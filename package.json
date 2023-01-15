@@ -1,0 +1,23 @@
+{
+  "name": "learn-mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muneebulislam/learn-mongoDb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muneebulislam/learn-mongoDb/issues"
+  },
+  "homepage": "https://github.com/muneebulislam/learn-mongoDb#readme",
+  "dependencies": {
+    "mongoose": "^6.8.3"
+  }
+}
