@@ -1,7 +1,3 @@
-// const express = require('express');
-// const app = express();
-// // const https = require('https');
-
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 
@@ -22,6 +18,7 @@ async function main() {
   const Fruit = mongoose.model('Fruit', fruitSchema); 
   //inside the parenthesis 'Fruit' is name of collection that will be automatically converted to Fruits name.
   const mango = new Fruit({ name: 'Mango', rating: 8, review: 'Yellow and very sweet!'});
+  mango.save();
   console.log(mango.name);
   // we can insert many fruits to collection as follows
   const apple = new Fruit({
@@ -59,11 +56,19 @@ async function main() {
   const personSchema = mongoose.Schema({
     name:String,
     age: {type:Number, min: 0, max: 110},
+    favoriteFruit: fruitSchema
   });
 
   const Person  = mongoose.model('Person', personSchema);
 //   const john = new Person({name:"John", age: 32});
 //   await john.save();
+const mike = new Person({
+  name: "Mike",
+  age: 40,
+  favoriteFruit: mango
+})
+
+mike.save();
 
 // Delete all the documents in Fruits model where name is apple
 // Fruit.deleteMany({ name: 'apple' }, function (err) {
@@ -72,16 +77,27 @@ async function main() {
 // });
 
 
- Fruit.find((err,data)=>{ // here data is an array of objects. 
-    if(err){
-        console.log(err);
-    } else {
-      mongoose.connection.close();
-        data.forEach((item)=>{
-          console.log(item.name);
-        })
+//  Fruit.find((err,data)=>{ // here data is an array of objects. 
+//     if(err){
+//         console.log(err);
+//     } else {
+//       mongoose.connection.close();
+//         data.forEach((item)=>{
+//           console.log(item.name);
+//         })
+//     }
+//   });
+
+
+Person.find((err,data)=>{ // here data is an array of objects. 
+  if (err){
+    console.log(err)
+  } else{
+    data.forEach(obj=>{
+      console.log(obj);
     }
-  });
+)}
+});
 
 }
 
